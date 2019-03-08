@@ -1,6 +1,8 @@
-/*
-  Be sure to import in all of the action types from `../actions`
-*/
+import {
+   FETCHING_SMURFS,
+   FETCHING_SMURFS_SUCCESS,
+   FETCHING_SMURFS_FAILURE,
+} from '../actions';
 
 
  const initialState = {
@@ -14,6 +16,10 @@
 
 export default (state = initialState, action) => {
    switch (action.type) {
+      case FETCHING_SMURFS:
+         return Object.assign({}, state, {
+            fetchingSmurfs: true,
+         });
       default:
          return state;
    }
