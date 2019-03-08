@@ -5,6 +5,8 @@ export const FETCHING_SMURFS_SUCCESS = 'FETCHING_SMURFS_SUCCESS';
 export const FETCHING_SMURFS_FAILURE = 'FETCHING_SMURFS_FAILURE';
 
 export const CREATE_SMURF = 'CREATE_SMURF';
+export const CREATE_SMURF_SUCCESS = 'CREATE_SMURF_SUCCESS';
+export const CREATE_SMURF_FAILURE = 'CREATE_SMURF_FAILURE';
 
 export function getSmurfs() {
   return function(dispatch) {
@@ -19,7 +21,18 @@ export function getSmurfs() {
   }
 }
 
-
+export function addSmurf(smurf) {
+  return function(dispatch) {
+    dispatch({ type: CREATE_SMURF });
+    axios.post('http://localhost3333/smurfs', smurf)
+      .then(response => {
+        dispatch({ type: CREATE_SMURF_SUCCESS, payload: response.data })
+      })
+      .catch(err => {
+        dispatch({ type: CREATE_SMURF_FAILURE, payload: err });
+      })
+  }
+}
 
 
 

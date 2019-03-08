@@ -2,6 +2,9 @@ import {
    FETCHING_SMURFS,
    FETCHING_SMURFS_SUCCESS,
    FETCHING_SMURFS_FAILURE,
+   CREATE_SMURF,
+   CREATE_SMURF_SUCCESS,
+   CREATE_SMURF_FAILURE,
 } from '../actions';
 
 
@@ -29,7 +32,21 @@ export default (state = initialState, action) => {
             return Object.assign({}, state, {
                fetchingSmurfs: false,
                error: action.payload,
-            })
+            });
+         case CREATE_SMURF:
+            return Object.assign({}, state, {
+               addingSmurf: true,
+            });
+         case CREATE_SMURF_SUCCESS:
+            return Object.assign( {}, state, {
+               addingSmurf: false,
+               smurfs: action.payload,
+            });
+         case CREATE_SMURF_FAILURE:
+            return Object.assign( {}, state, {
+               addingSmurf: false,
+               error: action.payload,
+            });
       default:
          return state;
    }
