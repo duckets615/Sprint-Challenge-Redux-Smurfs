@@ -8,7 +8,7 @@ export function getSmurfs() {
   return function(dispatch) {
     dispatch({ type: FETCHING_SMURFS });
     return axios.get('http://localhost:3333/smurfs').then(response => {
-      console.log(respons);
+      console.log(response);
     })
   }
 }
