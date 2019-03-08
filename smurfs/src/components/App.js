@@ -11,8 +11,8 @@ import './App.css';
 class App extends Component {
   state = {
     name: '',
-    age: null,
-    height: '',
+    age: 0,
+    height: 0,
   }
 componentDidMount() {
   this.props.getSmurfs(); // dispact action to make api call to server & get smurfs // need action creator
@@ -27,11 +27,15 @@ handleChanges = e => { //button click function
     const { name, age, height } = this.state; //cleans up code, forgot what its called
     return (
       <div className="App">
+
+
         <input placeholder='smurf name' type='text' name='name' value={name} onChange={this.handleChanges} />
         <input placeholder='smurf age' type='number' name='age' value={age} onChange={this.handleChanges} />
         <input placeholder='smurf height' type='text' name='height' value={height} onChange={this.handleChanges} />
         <button onClick={() => this.props.addSmurf(this.state)}>Add Smurf</button>
         {this.props.addingSmurf ? <h6>adding Smurf</h6> : null}
+
+
         {this.props.fetchingSmurfs ? <h2>Loading...</h2> : null}
         {
           !this.props.fetchingSmurfs && this.props.smurfs.length > 0 ?
@@ -51,7 +55,7 @@ handleChanges = e => { //button click function
   }
 }
 // will tell connect function what pieces of state we want to be available
-const mapStateToProps = state => ({ // complicet return of all redux state needed for component
+const mapStateToProps = state => ({ // complic return of all redux state needed for component
   addingSmurf: state.addingSmurf,
   error: state.error,
   smurfs: state.smurfs, // map state.smurfs to this prop
