@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+// pending actions
 export const FETCHING_SMURFS = 'FETCHING_SMURFS';
 export const FETCHING_SMURFS_SUCCESS = 'FETCHING_SMURFS_SUCCESS';
 export const FETCHING_SMURFS_FAILURE = 'FETCHING_SMURFS_FAILURE';
@@ -9,8 +9,8 @@ export const CREATE_SMURF_SUCCESS = 'CREATE_SMURF_SUCCESS';
 export const CREATE_SMURF_FAILURE = 'CREATE_SMURF_FAILURE';
 
 export function getSmurfs() {
-  return function(dispatch) {
-    dispatch({ type: FETCHING_SMURFS });
+  return function(dispatch) {  //thunk allows function instead of simple action;
+    dispatch({ type: FETCHING_SMURFS }); // pass in action
     return axios.get('http://localhost:3333/smurfs')
     .then(response => {
       dispatch({ type: FETCHING_SMURFS_SUCCESS, payload: response.data});

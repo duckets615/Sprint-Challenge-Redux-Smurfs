@@ -15,16 +15,16 @@ class App extends Component {
     height: '',
   }
 componentDidMount() {
-  this.props.getSmurfs();
+  this.props.getSmurfs(); // dispact action to make api call to server & get smurfs // need action creator
 }
-handleChanges = e => {
+handleChanges = e => { //button click function
   this.setState({
     [e.target.name]: e.target.value,
   });
 }
 
   render() {
-    const { name, age, height } = this.state;
+    const { name, age, height } = this.state; //cleans up code, forgot what its called
     return (
       <div className="App">
         <input placeholder='smurf name' type='text' name='name' value={name} onChange={this.handleChanges} />
@@ -50,12 +50,12 @@ handleChanges = e => {
     );
   }
 }
-
-const mapStateToProps = state => ({
+// will tell connect function what pieces of state we want to be available
+const mapStateToProps = state => ({ // complicet return of all redux state needed for component
   addingSmurf: state.addingSmurf,
   error: state.error,
-  smurfs: state.smurfs,
+  smurfs: state.smurfs, // map state.smurfs to this prop
   fetchingSmurfs: state.fetchingSmurfs,
 });
-
+// function will map the state in the store to the component
 export default connect(mapStateToProps, { addSmurf, getSmurfs })(App);

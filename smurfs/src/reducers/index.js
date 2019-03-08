@@ -1,4 +1,4 @@
-import {
+import { // import action types;
    FETCHING_SMURFS,
    FETCHING_SMURFS_SUCCESS,
    FETCHING_SMURFS_FAILURE,
@@ -7,7 +7,7 @@ import {
    CREATE_SMURF_FAILURE,
 } from '../actions';
 
-
+// init state;
  const initialState = {
    smurfs: [],
    fetchingSmurfs: false,
@@ -16,12 +16,13 @@ import {
    //deletingSmurf: false, //stetch
    error: null,
  }
-
+// create rexucer and export  take in state and action
 export default (state = initialState, action) => {
+   // different cases based on action type
    switch (action.type) {
       case FETCHING_SMURFS:
-         return Object.assign({}, state, {
-            fetchingSmurfs: true,
+         return Object.assign({}, state, { //update state
+            fetchingSmurfs: true, //updating state by fetching smurf;
          });
       case FETCHING_SMURFS_SUCCESS:
          return Object.assign({}, state, {
