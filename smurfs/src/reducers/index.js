@@ -11,7 +11,7 @@ import {
    addingSmurf: false,
    //updatingSmurf: false, //stretch
    //deletingSmurf: false, //stetch
-   error: null
+   error: null,
  }
 
 export default (state = initialState, action) => {
@@ -20,6 +20,16 @@ export default (state = initialState, action) => {
          return Object.assign({}, state, {
             fetchingSmurfs: true,
          });
+      case FETCHING_SMURFS_SUCCESS:
+         return Object.assign({}, state, {
+            fetchingSmurfs: false,
+            smurfs: action.payload,
+         });
+         case FETCHING_SMURFS_FAILURE:
+            return Object.assign({}, state, {
+               fetchingSmurfs: false,
+               error: action.payload,
+            })
       default:
          return state;
    }

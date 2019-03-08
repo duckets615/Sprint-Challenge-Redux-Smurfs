@@ -7,8 +7,12 @@ export const FETCHING_SMURFS_FAILURE = 'FETCHING_SMURFS_FAILURE';
 export function getSmurfs() {
   return function(dispatch) {
     dispatch({ type: FETCHING_SMURFS });
-    return axios.get('http://localhost:3333/smurfs').then(response => {
-      console.log(response);
+    return axios.get('http://localhost:3333/smurfs')
+    .then(response => {
+      dispatch({ type: FETCHING_SMURFS_SUCCESS, payload: response.data});
+    })
+    .catch(err => {
+      dispatch({ type: FETCHING_SMURFS_FAILURE, payload: err })
     })
   }
 }

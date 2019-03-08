@@ -16,7 +16,20 @@ componentDidMount() {
   render() {
     return (
       <div className="App">
-        {this.props.fetchingSmurfs ? <h2>Loading...</h2> : null}
+        {this.props.fetchingSmurfs ? <h2>Loading...</h2> : <h2>failed to fetch</h2>}
+        {
+          !this.props.fetchingSmurfs && this.props.smurfs.length ?
+            <ul>
+              {this.props.smurfs.map(smurf => {
+                <li>
+                  <h2>{smurf.name}</h2>
+                  <h4>Age: {smurf.age}</h4>
+                  <h4>Height: {smurf.height}</h4>
+                </li>
+              })}
+            </ul> :
+            null
+        }
       </div>
     );
   }
