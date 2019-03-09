@@ -47,7 +47,7 @@ server.post('/smurfs', (req, res) => {
   smurfId++;
   res.json(smurfs);
 });
-
+// stretch
 server.put('/smurfs/:id', (req, res) => {
   const { id } = req.params;
   const { name, age, height } = req.body;
@@ -64,7 +64,7 @@ server.put('/smurfs/:id', (req, res) => {
     res.json(smurfs);
   }
 });
-
+// stretch
 server.delete('/smurfs/:id', (req, res) => {
   const { id } = req.params;
   const foundSmurf = smurfs.find(smurf => smurf.id == id);
