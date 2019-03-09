@@ -1,22 +1,21 @@
 import axios from 'axios';
-// pending actions
-export const FETCHING_SMURFS = 'FETCHING_SMURFS';
-export const FETCHING_SMURFS_SUCCESS = 'FETCHING_SMURFS_SUCCESS';
-export const FETCHING_SMURFS_FAILURE = 'FETCHING_SMURFS_FAILURE';
 
+export const FETCHING_SMURFS = 'FETCHING_SMURFS'; // dispatch api call
+export const FETCHING_SMURFS_SUCCESS = 'FETCHING_SMURFS_SUCCESS'; // call successful
+export const FETCHING_SMURFS_FAILURE = 'FETCHING_SMURFS_FAILURE'; // call failed
 export const CREATE_SMURF = 'CREATE_SMURF';
 export const CREATE_SMURF_SUCCESS = 'CREATE_SMURF_SUCCESS';
 export const CREATE_SMURF_FAILURE = 'CREATE_SMURF_FAILURE';
 
 export function getSmurfs() {
-  return function(dispatch) {  //thunk allows function instead of simple action;
-    dispatch({ type: FETCHING_SMURFS }); // pass in action
-    return axios.get('http://localhost:3333/smurfs')
+  return function(dispatch) {
+    dispatch({ type:FETCHING_SMURFS });
+    axios.get('http://localhost:3333/smurfs')
     .then(response => {
-      dispatch({ type: FETCHING_SMURFS_SUCCESS, payload: response.data});
+      dispatch({ type: FETCHING_SMURFS_SUCCESS, payload: response.data })
     })
     .catch(err => {
-      dispatch({ type: FETCHING_SMURFS_FAILURE, payload: err })
+      dispatch({ type: FETCHING_SMURFS_FAILURE, payload: err });
     })
   }
 }
@@ -25,14 +24,54 @@ export function addSmurf(smurf) {
   return function(dispatch) {
     dispatch({ type: CREATE_SMURF });
     axios.post('http://localhost3333/smurfs', smurf)
-      .then(response => {
-        dispatch({ type: CREATE_SMURF_SUCCESS, payload: response.data })
-      })
-      .catch(err => {
-        dispatch({ type: CREATE_SMURF_FAILURE, payload: err });
-      })
+    .then(response => {
+      dispatch({ type: CREATE_SMURF_SUCCESS, payload: response.data })
+    })
+    .catch(err => {
+      dispatch({ type: CREATE_SMURF_FAILURE, payload: err });
+    })
   }
 }
+
+
+
+/////////////      ORIGINAL NOT WORKING FOR SOME REASON CODE     /////////////
+
+// import axios from 'axios';
+// // pending actions
+// export const FETCHING_SMURFS = 'FETCHING_SMURFS';
+// export const FETCHING_SMURFS_SUCCESS = 'FETCHING_SMURFS_SUCCESS';
+// export const FETCHING_SMURFS_FAILURE = 'FETCHING_SMURFS_FAILURE';
+//
+// export const CREATE_SMURF = 'CREATE_SMURF';
+// export const CREATE_SMURF_SUCCESS = 'CREATE_SMURF_SUCCESS';
+// export const CREATE_SMURF_FAILURE = 'CREATE_SMURF_FAILURE';
+//
+// export function getSmurfs() {
+//   return function(dispatch) {  //thunk allows function instead of simple action;
+//     dispatch({ type: FETCHING_SMURFS }); // pass in action
+//     return axios.get('http://localhost:3333/smurfs')
+//     .then(response => {
+//       dispatch({ type: FETCHING_SMURFS_SUCCESS, payload: response.data});
+//     })
+//     .catch(err => {
+//       dispatch({ type: FETCHING_SMURFS_FAILURE, payload: err })
+//     })
+//   }
+// }
+//
+// export function addSmurf(smurf) {
+//   return function(dispatch) {
+//     dispatch({ type: CREATE_SMURF });
+//     axios.post('http://localhost3333/smurfs', smurf)
+//       .then(response => {
+//         dispatch({ type: CREATE_SMURF_SUCCESS, payload: response.data })
+//       })
+//       .catch(err => {
+//         dispatch({ type: CREATE_SMURF_FAILURE, payload: err });
+//       })
+//   }
+// }
 
 
 
